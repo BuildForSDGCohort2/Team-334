@@ -7,7 +7,7 @@ const SignedInLinks = () => {
   	<Nav className="ml-auto">
   		<Link to="/" className="nav-link">Request</Link>
 	  	<Link to="/" className="nav-link">About</Link>
-	  	<Link to="/" className="nav-link">Covid</Link>
+	  	<Link to="/signup" className="nav-link">SignUp</Link>
   	</Nav>
   );
 }
