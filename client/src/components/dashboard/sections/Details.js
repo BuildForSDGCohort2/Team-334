@@ -4,12 +4,9 @@ import { Jumbotron, Container } from 'react-bootstrap'
 const Details = () => {
 
 	return (
-		<Jumbotron fluid className="mb-0">
-			<Container className="text-center">
-				<h2>Meet a Doctor from the comfort of your home</h2>
-				<p>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque earum reiciendis reprehenderit, beatae eos impedit odit maiores iste possimus. Voluptas similique sapiente, quos culpa, quae doloremque neque autem vitae, eligendi, consequatur sint molestiae. Alias, reiciendis? Harum, tempora adipisci sequi, animi maxime vero excepturi. Laborum non, sequi amet voluptatum dolores laboriosam.
-				</p>
+		<Jumbotron fluid  style={{backgroundColor: "#4169e1", fontSize: "23px"}} className="mb-0">
+			<Container className="text-center text-light">
+				<p>Telemedicine allows healthcare professionals to evaluate, diagnose and treat patients at a distance using telecommunications technology. This approach to healthcare has shown positive impacts and is becoming an increasing part of the world healthcare infrastructure. </p>
 			</Container>
 		</Jumbotron>
 		)

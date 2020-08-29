@@ -5,9 +5,9 @@ import SignedOutLinks from './SignedOutLinks.js'
 
 const App = () => {
   return (
-  	<Navbar bg="dark" variant="dark" expand="lg">
+  	<Navbar style={{backgroundColor: "#4169e1"}} variant="dark" expand="lg">
   		<Navbar.Brand href="#home">
-  			eHealthMe
+  			VCare
   		</Navbar.Brand>
   		<Navbar.Toggle aria-controls="toggle" />
   		<Navbar.Collapse id="toggle">
