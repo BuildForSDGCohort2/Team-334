@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 const Benefits = () => {
 	return (
 		<Container fluid className="my-3 text-center text-dark">
+			<h2 className="mt-5">Benefits</h2>
 			<Row className="justify-content-center">
 				<Col xs={12} md={4}>
 					<div className="my-5">

@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Nav } from 'react-bootstrap'
+import { Nav, NavDropdown } from 'react-bootstrap'
 
 const SignedOutLinks = () => {
   return (
   	<Nav>
-	  	<Link className="nav-link" to="/about">About</Link>
-	  	<Link to="/" className="nav-link">Covid</Link>
-	  	<Link to="/" className="nav-link">Blog</Link>
+	  	<NavDropdown title="Account" id="dropdown">
+	  		<Link className="dropdown-item" to="/signin">Login</Link>
+	  		<Link className="dropdown-item" to="/signup">Signup</Link>
+	  		<Link className="dropdown-item" to="/demo">Demo</Link>
+	  	</NavDropdown>
+	  	<Link to="/" className="nav-link">Covid-19</Link>
+	  	<Link to="/" className="nav-link">Awareness</Link>
   	</Nav>
   );
 }

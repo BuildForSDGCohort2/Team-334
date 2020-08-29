@@ -6,7 +6,7 @@ import SignedOutLinks from './SignedOutLinks.js'
 const App = () => {
   return (
   	<Navbar style={{backgroundColor: "#4169e1"}} variant="dark" expand="lg">
-  		<Navbar.Brand href="#home">
+  		<Navbar.Brand href="/">
   			VCare
   		</Navbar.Brand>
   		<Navbar.Toggle aria-controls="toggle" />
