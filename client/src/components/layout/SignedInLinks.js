@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const SignedInLinks = () => {
   return (
   	<Nav className="ml-auto">
+	  	<Link to="/booknow" className="nav-link">Book</Link>
   		<Link to="/" className="nav-link">Profile</Link>
-	  	<Link to="/" className="nav-link">Covid-19</Link>
-	  	<Link to="/signup" className="nav-link">Awareness</Link>
+	  	<Link to="/" className="nav-link">Awareness</Link>
   	</Nav>
   );
 }
