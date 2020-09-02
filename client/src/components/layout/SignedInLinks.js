@@ -12,7 +12,7 @@ const SignedInLinks = ({ signOut }) => {
 	  		<Link className="dropdown-item" to="/">Profile</Link>
 	  		<Link className="dropdown-item" to="/">Complaints</Link>
 	  		<div className="dropdown-divider"></div>
-	  		<a className="dropdown-item" onClick={signOut}>Logout</a>
+	  		<button className="dropdown-item" onClick={signOut}>Logout</button>
 	  	</NavDropdown>
 	  	<Link to="/" className="nav-link">Awareness</Link>
   	</Nav>

@@ -1,7 +1,10 @@
 import React from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-const Bookings = () => {
+const Bookings = ({ auth }) => {
+	if (!auth.uid) return <Redirect to="/signin" />
 	return (
 		<Container className="my-5 text-dark">
 			<h2 className="text-center mb-4">Hire Professionals Now</h2>
@@ -56,4 +59,10 @@ const Bookings = () => {
 	)
 }
 
-export default Bookings
+const mapStateToProps = (state) => {
+	return {
+		auth: state.firebase.auth
+	}
+}
+
+export default connect(mapStateToProps)(Bookings)

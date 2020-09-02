@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { demoCall } from '../../store/actions/authActions.js'
+import { Redirect } from 'react-router-dom'
 
 class Demo extends Component {
 	state = {
@@ -18,8 +19,10 @@ class Demo extends Component {
 	}
 	handleSubmit = e => {
 		e.preventDefault();
+		this.props.demoCall(this.state);
 	}
 	render() {
+		const { auth } = this.props;
 		if (auth.uid) return <Redirect to="/booknow" />
 		return (
 			<Container className="my-5">
@@ -56,13 +59,14 @@ class Demo extends Component {
 
 const mapStateToProp = state => {
 	return {
-		auth: state.firebase.auth
+		auth: state.firebase.auth,
+		authError: state.auth.authError
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		demoCall: creds => dispatch(demoCall(creds));
+		demoCall: creds => dispatch(demoCall(creds))
 	}
 }
 

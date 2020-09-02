@@ -5,7 +5,6 @@ import SignedOutLinks from './SignedOutLinks.js'
 import { connect } from 'react-redux'
 
 const App = ({ firebase }) => {
-  console.log(firebase)
   return (
   	<Navbar style={{backgroundColor: "#4169e1"}} variant="dark" expand="lg">
   		<Navbar.Brand href="/">

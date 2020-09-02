@@ -16,33 +16,37 @@ const SlideShow = () => {
 		height: "70vh",
 		opacity: ".75"
 	}
+	const text = {
+		background: "rgba(0, 0, 50, .3)",
+		borderRadius: "5px"
+	}
 	return (
 		<Carousel activeIndex={index} onSelect={handleSelect}>
 			<Carousel.Item>
 				<img src={Img1} alt="First Slide" style={style} />
 				<Carousel.Caption>
-					<h3 className="text-white"> Get diagnosed from the comfort of your home </h3>
+					<h5 className="text-light py-2" style={text}> Get diagnosed from the comfort of your home </h5>
 				</Carousel.Caption>
 			</Carousel.Item>
 
 			<Carousel.Item>
-				<img src={Img2} alt="First Slide" style={style} />
+				<img src={Img2} alt="Second Slide" style={style} />
 				<Carousel.Caption>
-					<h3>Talk to professionals in real time</h3>
+					<h5 className="text-light py-2" style={text}>Talk to professionals in real time</h5>
 				</Carousel.Caption>
 			</Carousel.Item>
 
 			<Carousel.Item>
-				<img src={Img3} alt="First Slide" style={style} />
+				<img src={Img3} alt="Third Slide" style={style} />
 				<Carousel.Caption>
-					<h3>No spending time on Queue</h3>
+					<h5 className="text-light py-2" style={text}>No spending time on Queue</h5>
 				</Carousel.Caption>
 			</Carousel.Item>
 
 			<Carousel.Item>
-				<img src={Img4} alt="First Slide" style={style} />
+				<img src={Img4} alt="Fourth Slide" style={style} />
 				<Carousel.Caption>
-					<h3>Doctors on standby 24/7</h3>
+					<h5 className="text-light py-2" style={text}>Doctors on standby 24/7</h5>
 				</Carousel.Caption>
 			</Carousel.Item>
 		</Carousel>

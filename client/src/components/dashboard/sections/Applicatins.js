@@ -25,7 +25,7 @@ const Applicatins = () => {
 					</Col>
 					<Col>
 						<ul>
-							<li>Remote pos-hospitalisation care</li>
+							<li>Remote post-hospitalisation care</li>
 							<li>Preventive care support</li>
 						</ul>
 					</Col>

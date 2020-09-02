@@ -4,7 +4,7 @@ import { Nav, NavDropdown } from 'react-bootstrap'
 
 const SignedOutLinks = () => {
   return (
-  	<Nav>
+  	<Nav className="ml-auto">
 	  	<Link to="/" className="nav-link">Covid-19</Link>
 	  	<Link to="/" className="nav-link">Awareness</Link>
   		<NavDropdown title="Account" id="dropdown">

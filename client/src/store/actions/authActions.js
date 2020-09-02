@@ -42,3 +42,19 @@ export const signUp = (newUser) => {
 		})
 	} 
 }
+
+export const demoCall = (creds) => {
+	return (dispatch, getState, {getFirestore}) => {
+		const firestore = getFirestore();
+
+	firestore.collection('demo').add({
+		firstname: creds.firstname,
+		lastname: creds.lastname,
+		email: creds.email,
+		gender: creds.gender,
+		checkbox: creds.checkbox
+	}).then(() => {
+		dispatch({ type: 'DEMO_SUCCESS'})
+	}).catch(err => dispatch({ type: 'DEMO_ERROR', err}))
+	}
+}
