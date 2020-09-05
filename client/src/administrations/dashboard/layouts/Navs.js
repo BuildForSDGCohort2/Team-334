@@ -7,16 +7,16 @@ const Navs = () => {
 		<Container>
 			<Nav activeKey="/">
 				<Nav.Item>
-					<Link to="/provider" className="nav-link">Ready</Link>
+					<Link to="/providers" className="nav-link">Ready</Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Link to="/provider" className="nav-link">Patients</Link>
+					<Link to="/providers" className="nav-link">Patients</Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Link to="/provider" className="nav-link">Schedules</Link>
+					<Link to="/providers" className="nav-link">Schedules</Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Link to="/provider" className="nav-link">Start Video</Link>
+					<Link to="/providers/createroom" className="nav-link">Create Room</Link>
 				</Nav.Item>
 			</Nav>
 		</Container>

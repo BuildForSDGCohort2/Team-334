@@ -9,6 +9,7 @@ import Demo from './components/auth/Demo.js'
 import SignIn from './components/auth/SignIn.js'
 import Bookings from './components/auth/Bookings.js'
 import AdminBoard from './administrations/dashboard/AdminBoard.js'
+import CreateRoom from './administrations/auth/CreateRoom.js'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/demo" component={Demo} />
           <Route path="/booknow" component={Bookings} />
           <Route path="/providers" component={AdminBoard} />
+          <Route path="/createroom" component={CreateRoom} />
         </Switch>
         <Footer />
       </div>
