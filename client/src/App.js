@@ -8,6 +8,7 @@ import Footer from './components/layout/Footer.js'
 import Demo from './components/auth/Demo.js'
 import SignIn from './components/auth/SignIn.js'
 import Bookings from './components/auth/Bookings.js'
+import AdminBoard from './administrations/dashboard/AdminBoard.js'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/signin" component={SignIn} />
           <Route path="/demo" component={Demo} />
           <Route path="/booknow" component={Bookings} />
+          <Route path="/providers" component={AdminBoard} />
         </Switch>
         <Footer />
       </div>

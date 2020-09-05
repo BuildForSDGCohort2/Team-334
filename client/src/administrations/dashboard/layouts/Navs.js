@@ -16,7 +16,7 @@ const Navs = () => {
 					<Link to="/provider" className="nav-link">Schedules</Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Link to="/provider" className="nav-link">Link</Link>
+					<Link to="/provider" className="nav-link">Start Video</Link>
 				</Nav.Item>
 			</Nav>
 		</Container>

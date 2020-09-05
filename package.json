@@ -10,5 +10,9 @@
     "dev": "concurrently \"npm run client\" \"npm run nodemon\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "twilio": "^3.49.1"
+  }
 }

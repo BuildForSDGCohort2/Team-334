@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'react-botstrap'
+import { Container } from 'react-bootstrap'
 
 const Welcome = () => {
 	return (
