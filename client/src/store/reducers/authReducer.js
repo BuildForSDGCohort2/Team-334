@@ -34,7 +34,15 @@ const authReducer = (state = initState, action) => {
 			console.log('Signedin for demo')
 			return {
 				authError: action.err.message
-			}			
+			}
+		case 'PROVIDER_SUCCESS':
+			return {
+				authError: null
+			}
+		case 'PROVIDER_ERROR':
+			return {
+				authError: action.err.message
+			}
 		default:
 		 return state
 	}

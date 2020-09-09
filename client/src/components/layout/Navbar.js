@@ -7,7 +7,7 @@ import logo from './assets/logo.png'
 
 const App = ({ firebase }) => {
   return (
-  	<Navbar style={{backgroundColor: "#4169e1"}} variant="dark" expand="lg">
+  	<Navbar style={{ background: '#005faf'}} variant="dark" expand="lg">
   		<Navbar.Brand href="/">
   			<img src={logo} width="70" height="50" className="d-inline-block align-top" alt="vcare log" />
   		</Navbar.Brand>

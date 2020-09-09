@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar.js'
 import SignUp from './components/auth/SignUp.js'
@@ -9,7 +10,7 @@ import Demo from './components/auth/Demo.js'
 import SignIn from './components/auth/SignIn.js'
 import Bookings from './components/auth/Bookings.js'
 import AdminBoard from './administrations/dashboard/AdminBoard.js'
-import CreateRoom from './administrations/auth/CreateRoom.js'
+import VideoChat from './administrations/video/VideoChat.js'
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
           <Route path="/demo" component={Demo} />
           <Route path="/booknow" component={Bookings} />
           <Route path="/providers" component={AdminBoard} />
-          <Route path="/createroom" component={CreateRoom} />
+          <Route path="/session" component={VideoChat} />
         </Switch>
         <Footer />
       </div>
