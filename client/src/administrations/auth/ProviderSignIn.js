@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { signIn } from '../../store/actions/providerAction'
 // import { Redirect } from 'react-router-dom'
 
-const SignIn = () => {
+const SignIn = ({ signIn }) => {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
 	const handleSubmit = e => {
 		e.preventDefault();
+		signIn(email, password);
 	}
 
 	// if (auth.uid) return <Redirect to="/" />
@@ -31,5 +33,18 @@ const SignIn = () => {
 	)
 }
 
+const mapStateToProps = state => {
+	return {
+		token: state.provider.data.token,
+		user: state.provider.data.user
+	}
+}
 
-export default connect()(SignIn)
+const mapDispatchToProps = dispatch => {
+	return {
+		signIn: (creds) => dispatch(signIn(creds))
+	}
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

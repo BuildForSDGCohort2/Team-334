@@ -20,7 +20,9 @@ const authReducer = (state = initState, action) => {
 			}
 		case 'SIGNUP_SUCCESS':
 			console.log('Signed up successful');
-			return state
+			return {
+				authError: null
+			}
 		case 'SIGNUP_ERROR':
 			console.log('Signed up failed');
 			return {
@@ -32,14 +34,6 @@ const authReducer = (state = initState, action) => {
 			}
 		case 'DEMO_ERROR':
 			console.log('Signedin for demo')
-			return {
-				authError: action.err.message
-			}
-		case 'PROVIDER_SUCCESS':
-			return {
-				authError: null
-			}
-		case 'PROVIDER_ERROR':
 			return {
 				authError: action.err.message
 			}

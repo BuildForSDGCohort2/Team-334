@@ -15,6 +15,7 @@ const SignedInLinks = ({ signOut }) => {
 	  	<NavDropdown title="Account" id="dropdown">
 	  		<Link className="dropdown-item" to="/">Profile</Link>
 	  		<Link className="dropdown-item" to="/">Complaints</Link>
+	  		<Link className="dropdown-item" to="/providers">Provider</Link>
 	  		<div className="dropdown-divider"></div>
 	  		<button className="dropdown-item" onClick={signOut}>Logout</button>
 	  	</NavDropdown>

@@ -58,26 +58,3 @@ export const demoCall = (creds) => {
 	}).catch(err => dispatch({ type: 'DEMO_ERROR', err}))
 	}
 }
-
-export const providerSignUp = ({ email, password}) => {
-	return (dispatch, getState, {getFirebase, getFirestore}) => {
-		const firebase = getFirebase();
-		const firestore = getFirestore();
-
-		firebase.auth().createUserWithEmailAndPassword(
-			email,
-			password
-		).then((res) => {
-			return firestore.collection('providers').doc(res.user.uid).set({
-				firstname,
-				lastname,
-				email,
-				initials: newUser.firstname[0] + newUser.lastname[0]
-			})
-		}).then(() => {
-			dispatch({ type: 'PROVIDER_SUCCESS'});
-		}).catch(err => {
-			dispatch({ type: 'PROVIDER_ERROR', err})
-		})
-	} 
-}

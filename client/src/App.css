@@ -8,9 +8,22 @@
 	/*font-family: 'Roboto', sans-serif;*/ 
 }
 
+.room {
+	width: 100vw;
+	height: 100vh;
+}
+
 .remote-participant {
 	flex-wrap: none;
 	justify-content: space-between;
+}
+
+.local-participant {
+	position: absolute;
+	top: 10vh;
+	right: 5vw;
+	height: 300px;
+	width: 250px;
 }
 
 .participant {
@@ -21,6 +34,8 @@
 
 video {
 	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	max-width: 600px;
 	border-radius: 5px;
 	margin: 0 auto;
