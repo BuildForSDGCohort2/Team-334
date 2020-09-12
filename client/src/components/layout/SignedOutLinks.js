@@ -8,7 +8,7 @@ const SignedOutLinks = () => {
 	  	<Link className="nav-link" to="/demo">Demo</Link>
 	  	<NavDropdown title="Awareness" id="awareness">
 	  		<Link to="/" className="dropdown-item">Articles</Link>
-	  		<Link to="/" className="dropdown-item">Covid-19</Link>
+	  		<Link to="/session" className="dropdown-item">Covid-19</Link>
 	  	</NavDropdown>
   		<NavDropdown title="Account" id="account">
 	  		<Link className="dropdown-item" to="/signin">Login</Link>

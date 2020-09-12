@@ -18,6 +18,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
+        <Route path="/session" component={VideoChat} />
+        <Route path="/providers" component={AdminBoard} />
         <Navbar />
         <Switch>
           <Route exact path="/" component={Dashboard} />
@@ -25,8 +27,6 @@ const App = () => {
           <Route path="/signin" component={SignIn} />
           <Route path="/demo" component={Demo} />
           <Route path="/booknow" component={Bookings} />
-          <Route path="/providers" component={AdminBoard} />
-          <Route path="/session" component={VideoChat} />
           <Route path="/providersignin" component={ProviderSignIn} />
           <Route path="/providersignup" component={ProviderSignUp} />
         </Switch>

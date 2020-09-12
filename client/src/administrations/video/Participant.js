@@ -65,8 +65,8 @@ const Participant = ({ participant }) => {
 
   return (
     <Container 
-      className="participant text-success text-center mb-5 p-3">
-      <p>{participant.identity}</p>
+      className="participant text-success text-center mb-5">
+      <p className="">{participant.identity}</p>
       <video ref={videoRef} autoPlay={true} />
       <audio ref={audioRef} autoPlay={true} muted={true} />
     </Container>

@@ -14,8 +14,7 @@ const AccessToken = twilio.jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
 
 // handling create room route
-const {accountSid, authToken, apiKey, secret, mongoURI} = require('./config/keys');
-const client = twilio(accountSid, authToken);
+const {accountSid, apiKey, secret, mongoURI} = require('./config/keys');
 
 // Connect to mongodb
 mongoose
@@ -28,21 +27,17 @@ mongoose
 	.catch(err => console.log(err));
 
 app.post('/video/token', (req, res) => {
-	client.video.rooms.create({uniqueName: req.body.roomName})
-	.then(room => {
-		let accessToken = new AccessToken(accountSid, apiKey, secret);
+	const token = new AccessToken(accountSid, apiKey, secret);
+	token.identity = req.body.userName;
 
-		accessToken.identity = 'Care Provider';
+	const room = req.body.roomName;
 
-		let grant = new VideoGrant();
-		grant.room = room.uniqueName;
-		accessToken.addGrant(grant);
+	const videoGrant = new VideoGrant({ room });
+	token.addGrant(videoGrant);
 
-		var jwt = accessToken.toJwt();
+	var jwt = token.toJwt();
 
-		res.send({room, jwt});
-	})
-	.catch(err => console.log(err))
+	res.send({ jwt });
 })
 
 app.use('/api/user', require('./routes/api/users'));

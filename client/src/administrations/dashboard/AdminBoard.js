@@ -8,8 +8,8 @@ const  AdminBoard = ({ auth }) => {
 	if (!auth.uid) return <Redirect to="/" />
 	return (
 		<div>
-			<Navs />
 			<Welcome />
+			<Navs />
 		</div>
 	)
 }

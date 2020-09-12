@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Video from 'twilio-video';
 import Participant from './Participant';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 
 const Room = ({ roomName, token , handleLogout }) => {
   const [room, setRoom] = useState(null);
@@ -43,11 +43,9 @@ const Room = ({ roomName, token , handleLogout }) => {
   }, [roomName, token]);
 
   const remoteParticipants = participants.map(participant => (
-    <Container className="row">
-      <span className="col">
-        <Participant key={participant.sid} participant={participant} />
-      </span>
-    </Container>
+    <Col >
+      <Participant key={participant.sid} participant={participant} />
+    </Col>
   ));
 
   return (
@@ -64,8 +62,10 @@ const Room = ({ roomName, token , handleLogout }) => {
           ''
         )}
       </Container>
-      <h6>Participants</h6>
-      <Container className="remote-participants">{remoteParticipants}</Container>
+      <h6>Patient</h6>
+      <Container className="remote-participants">
+        <Row>{remoteParticipants}</Row>
+      </Container>
     </Container>
   );
 };
