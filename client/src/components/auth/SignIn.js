@@ -24,6 +24,7 @@ class SignIn extends Component {
 		if (auth.uid) return <Redirect to="/" />
 		return (
 		<Container className="my-5">
+			<h4 className="text-center">Signin</h4>
 			<Form style={{maxWidth: "60%", marginLeft: "20%"}} onSubmit={this.handleSubmit}>
 				<Form.Group controlId="email">
 					<Form.Label>Email address</Form.Label>
@@ -34,7 +35,6 @@ class SignIn extends Component {
 					<Form.Control type="password" placeholder="Enter password" onChange={this.handleChange} />
 				</Form.Group>
 				<Button type="submit">Login</Button>
-				<Button block className="my-4" type="submit"><i className="fab fa-facebook fa-md"></i> Signin with facebook</Button>
 			</Form>
 		</Container>
 	)

@@ -9,12 +9,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// handling create room route
+const {accountSid, apiKey, authToken, secret, mongoURI} = require('./config/keys');
+
 // Initialize Token
 const AccessToken = twilio.jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
-
-// handling create room route
-const {accountSid, apiKey, secret, mongoURI} = require('./config/keys');
+const client = twilio(accountSid, authToken);
 
 // Connect to mongodb
 mongoose
@@ -27,21 +28,22 @@ mongoose
 	.catch(err => console.log(err));
 
 app.post('/video/token', (req, res) => {
+	const uniqueName = req.body.roomName;
 	const token = new AccessToken(accountSid, apiKey, secret);
 	token.identity = req.body.userName;
-
-	const room = req.body.roomName;
-
-	const videoGrant = new VideoGrant({ room });
+	const videoGrant = new VideoGrant({ uniqueName });
 	token.addGrant(videoGrant);
 
-	var jwt = token.toJwt();
-
-	res.send({ jwt });
+	client.video.rooms.create({ uniqueName })
+		.then(room => {
+			const jwt = token.toJwt();
+			res.json({ jwt, room: room.uniqueName });
+		}).catch(err => console.log(err))
 })
 
 app.use('/api/user', require('./routes/api/users'));
 app.use('/api/user/auth', require('./routes/api/auth'));
+app.use('/api/confirmation', require('./routes/api/validate'));
 
 // Port
 const PORT = process.env.PORT || 5000;

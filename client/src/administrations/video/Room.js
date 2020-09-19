@@ -43,7 +43,7 @@ const Room = ({ roomName, token , handleLogout }) => {
   }, [roomName, token]);
 
   const remoteParticipants = participants.map(participant => (
-    <Col >
+    <Col className="remote-box">
       <Participant key={participant.sid} participant={participant} />
     </Col>
   ));

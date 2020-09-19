@@ -43,10 +43,10 @@ router.post('/', (req, res) => {
 })
 
 // Get user data
-router.get('/user', (req, res) => {
-	User.findById(req.user.id)
-		.select('-password')
-		.then(user => res.json(user));
-})
+// router.get('/user', (req, res) => {
+// 	User.findOne(req.user.id)
+// 		.select('-password')
+// 		.then(user => res.json(user));
+// })
 
 module.exports = router;

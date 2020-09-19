@@ -17,6 +17,7 @@ const SignIn = ({ signIn }) => {
 	// if (auth.uid) return <Redirect to="/" />
 	return (
 		<Container className="my-5">
+			<div className="text-center my-3">Signin</div>
 			<Form style={{maxWidth: "60%", marginLeft: "20%"}} onSubmit={handleSubmit}>
 				<Form.Group controlId="email">
 					<Form.Label>Email address</Form.Label>

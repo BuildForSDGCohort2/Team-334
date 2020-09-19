@@ -1,25 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-*/
+/*@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');*/
+
+/**/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 *{
 	padding: 0;
 	margin: 0;
-	font-family: 'Raleway', sans-serif;
+	/*font-family: 'Raleway', sans-serif;*/
 	box-sizing: border-box;
-	/*font-family: 'Roboto', sans-serif;*/ 
+	font-family: 'Roboto', sans-serif; 
 }
-/* Video chat*/
+/* Video chat
 .room {
 	width: 100vw;
 	height: 100vh;
 	position: relative;
 }
 
+.remote-box {
+	min-width: 300px;
+	min-height: 300px;
+}
+
 .remote-participant {
 	flex-wrap: nowrap;
 	justify-content: space-between;
-	min-width: 300px;
-	min-height: 300px;
 }
 
 .local-participant {
@@ -52,4 +57,10 @@ video {
 div.social-icons a img{
 	height: 30px;
 	width: 30px;
+	margin: 0 8px;
+}
+
+div.social-icons a:hover img {
+	height: 35px;
+	width: 35px;
 }

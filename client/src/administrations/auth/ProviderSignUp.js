@@ -20,6 +20,7 @@ const SignUp = ({ signUp }) => {
 
 	return (
 		<Container>
+			<div className="text-center mt-3">Register</div>
 			<Form className="my-5" style={{maxWidth: "60%", marginLeft: "20%"}} onSubmit={handleSubmit} >
 				<Form.Group>
 					<Form.Label>First Name</Form.Label>

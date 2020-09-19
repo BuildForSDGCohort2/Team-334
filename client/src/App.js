@@ -5,11 +5,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar'
 import SignUp from './components/auth/SignUp'
 import Dashboard from './components/dashboard/Dashboard'
-import Footer from './components/layout/Footer'
+// import Footer from './components/layout/Footer'
 import Demo from './components/auth/Demo'
 import SignIn from './components/auth/SignIn'
 import Bookings from './components/auth/Bookings'
-import AdminBoard from './administrations/dashboard/AdminBoard'
+import ProviderBoard from './administrations/dashboard/ProviderBoard'
 import VideoChat from './administrations/video/VideoChat'
 import ProviderSignIn from './administrations/auth/ProviderSignIn'
 import ProviderSignUp from './administrations/auth/ProviderSignUp'
@@ -18,8 +18,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Route path="/session" component={VideoChat} />
-        <Route path="/providers" component={AdminBoard} />
         <Navbar />
         <Switch>
           <Route exact path="/" component={Dashboard} />
@@ -29,8 +27,10 @@ const App = () => {
           <Route path="/booknow" component={Bookings} />
           <Route path="/providersignin" component={ProviderSignIn} />
           <Route path="/providersignup" component={ProviderSignUp} />
+          <Route path="/session" component={VideoChat} />
+          <Route path="/providers" component={ProviderBoard} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </BrowserRouter>
   );

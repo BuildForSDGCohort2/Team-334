@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import { Container, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { signUp } from '../../store/actions/authActions.js'
@@ -12,7 +13,9 @@ class SignUp extends Component {
 		email: '',
 		password: '',
 		agecategory: '',
-		checkbox: ''
+		Parent: '',
+		checkbox: '',
+		emailConfirmed: false
 	}
 
 	handleChange = e => {
@@ -23,13 +26,19 @@ class SignUp extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		this.props.signUp(this.state);
+		axios.post('/api/confirmation', {
+			creds: this.state
+		}).then(({data}) => this.setState({emailConfirmed: true}))
+		.catch(err => console.log(err));
+
+		// this.props.signUp(this.state);
 	}
 	render() {
 		const { auth } = this.props;
 		if (auth.uid) return <Redirect to="/" />
 		return (
 			<Container>
+				<h3 className="text-center mt-3">Register</h3>
 				<Form className="my-5" style={{maxWidth: "60%", marginLeft: "20%"}} onSubmit={this.handleSubmit} >
 					<Form.Group>
 						<Form.Label>First Name</Form.Label>
@@ -64,7 +73,6 @@ class SignUp extends Component {
 						<Form.Check type="checkbox" label="Sign me in to newsletter" onChange={this.handleChange} />
 					</Form.Group>
 					<Button type="submit">Submit</Button>
-					<Button block className="my-4"><i className="fab fa-facebook"></i> Signup with facebook</Button>
 				</Form>
 			</Container>
 		)

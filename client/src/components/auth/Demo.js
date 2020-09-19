@@ -26,6 +26,7 @@ class Demo extends Component {
 		if (auth.uid) return <Redirect to="/booknow" />
 		return (
 			<Container className="my-5">
+				<h2 className="text-center">Request Demo</h2>
 				<Form style={{maxWidth: "60%", marginLeft: "20%"}} onSubmit={this.handleSubmit}>
 					<Form.Group controlId="firstname">
 						<Form.Label>First name</Form.Label>
@@ -48,9 +49,10 @@ class Demo extends Component {
 						</Form.Control>
 					</Form.Group>
 					<Form.Group controlId="checkbox">
-						<Form.Check type="checkbox" label="Sign me in to newsletter" onChange={this.handleChange} />
+						<Form.Check type="checkbox" label="Sign me in for newsletter" onChange={this.handleChange} />
 					</Form.Group>
 					<Button type="submit">Submit</Button>
+					<Button variant="outline-primary" type="submit" className="ml-5"><i className="fab fa-facebook fa-md"></i></Button>
 				</Form>
 			</Container>
 		)
