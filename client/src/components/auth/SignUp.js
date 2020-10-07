@@ -1,82 +1,95 @@
-import React, { Component } from 'react';
+import React, { useState, useCallback } from 'react';
 import axios from 'axios'
-import { Container, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { signUp } from '../../store/actions/authActions.js'
+import Navbar from '../dashboard/sections/Navbar'
 import { Redirect } from 'react-router-dom'
+import RegForm from './RegForm'
+import Verify from './Verify'
 
-class SignUp extends Component {
+const SignUp = ({ signUp, auth }) => {
 
-	state = {
-		firstname: '',
-		lastname: '',
-		email: '',
-		password: '',
-		agecategory: '',
-		Parent: '',
-		checkbox: '',
-		emailConfirmed: false
-	}
+	const [firstname, setFirstname] = useState('');
+	const [lastname, setLastname] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [guardian, setGuardian] = useState('above 18');
+	const [vcode, setVcode] = useState('');
+	// const [isVerifying, setIsVerifying] = useState(false);
+	const [emailSent, setEmailSent] = useState(false);
 
-	handleChange = e => {
-		this.setState({
-			[e.target.id]: e.target.value
-		})
-	}
+	const handleFirstname = useCallback(e => {
+		setFirstname(e.target.value);
+	}, []);
+	const handleLastname = useCallback(e => {
+		setLastname(e.target.value)
+	}, []);
+	const handleEmail = useCallback(e => {
+		setEmail(e.target.value)
+	}, []);
+	const handlePassword = useCallback(e => {
+		setPassword(e.target.value)
+	}, []);
+	const handleGuardian = useCallback(e => {
+		setGuardian(e.target.value)
+	}, []);
+	const handleVerify = useCallback(e => {
+		setVcode(e.target.value);
+	}, []);
 
-	handleSubmit = e => {
-		e.preventDefault();
-		axios.post('/api/confirmation', {
-			creds: this.state
-		}).then(({data}) => this.setState({emailConfirmed: true}))
-		.catch(err => console.log(err));
 
-		// this.props.signUp(this.state);
-	}
-	render() {
-		const { auth } = this.props;
-		if (auth.uid) return <Redirect to="/" />
-		return (
-			<Container>
-				<h3 className="text-center mt-3">Register</h3>
-				<Form className="my-5" style={{maxWidth: "60%", marginLeft: "20%"}} onSubmit={this.handleSubmit} >
-					<Form.Group>
-						<Form.Label>First Name</Form.Label>
-						<Form.Control type="text" id="firstname" placeholder="Enter First name" onChange={this.handleChange} />
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Last Name</Form.Label>
-						<Form.Control type="text" id="lastname" placeholder="Enter Last name" onChange={this.handleChange} />
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Email</Form.Label>
-						<Form.Control type="email" id="email" placeholder="Enter email" onChange={this.handleChange} />
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Password</Form.Label>
-						<Form.Control type="password" id="password" placeholder="Enter password" onChange={this.handleChange} />
-					</Form.Group>
-					<Form.Group controlId="agecategory" onChange={this.handleChange}>
-						<Form.Label>Age Category</Form.Label>
-						<Form.Control as="select">
-							<option>18 and above</option>
-							<option>under 18</option>
-						</Form.Control>
-					</Form.Group>
-					{this.state.agecategory === 'under 18' ? (
-						<Form.Group>
-							<Form.Label>Parent's Email</Form.Label>
-							<Form.Control type="email" id="email" placeholder="Enter Guardian's email" onChange={this.handleChange} />
-						</Form.Group>
-					) : (null)}
-					<Form.Group controlId="checkbox">
-						<Form.Check type="checkbox" label="Sign me in to newsletter" onChange={this.handleChange} />
-					</Form.Group>
-					<Button type="submit">Submit</Button>
-				</Form>
-			</Container>
-		)
-	}
+	const handleVerifySubmit = useCallback( 
+		async e => {
+			e.preventDefault();
+			console.log(vcode);
+			axios.post('/api/register/verify', {
+				code: vcode
+			})
+			.then(({ data }) => {
+				const { firstname, lastname, email, password, guardian } = data;
+				console.log(firstname, lastname, email, password);
+				if(firstname && lastname && email) {
+					signUp({firstname, lastname, email, password, guardian});
+					console.log(firstname, lastname, email, password, guardian);
+				}
+			})
+			.catch(err => console.log(err));
+	}, [vcode, signUp]);
+
+	const handleSubmit = useCallback(
+		async e => {
+			e.preventDefault();
+			console.log(firstname, lastname, email, password, guardian);
+			axios.post('/api/register', {
+				firstname,
+				lastname,
+				email,
+				password,
+				guardian
+			})
+			.then(({ data }) => {
+				console.log(data);
+				if(data.emailSent) {
+					setEmailSent(true);
+				}
+			});
+		},
+		[firstname, lastname, email, password, guardian])
+
+	if (auth.uid) return <Redirect to="/user" />
+	return(
+		<>
+			<Navbar />
+			{!emailSent ? <RegForm 
+				handleFirstname={handleFirstname} 
+		   		handleLastname={handleLastname}
+				handleEmail={handleEmail}
+				handlePassword={handlePassword}
+				handleGuardian={handleGuardian}
+				handleSubmit={handleSubmit} 
+			/> : <Verify handleVerify={handleVerify} handleVerifySubmit={handleVerifySubmit} />}
+		</>
+	)
 }
 
 const mapStateToProps = state => {

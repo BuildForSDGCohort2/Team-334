@@ -1,19 +1,18 @@
 import React from 'react'
-import Details from './sections/Details.js'
-import Benefits from './sections/Benefits.js'
-import Contact from './sections/Contact.js'
-import Applications from './sections/Applicatins.js'
-import SlideShow from './sections/Slideshow.js';
+import './assets/dashboard.css'
+import Navbar from './sections/Navbar'
+import Details from './sections/Details'
+import background from './assets/telemed.png'
 
 const Dashboard = () => {
+	const style = {
+		backgroundImage: `url(${background})`
+	}
 
 	return (
-		<div>
-			<SlideShow />
+		<div className="landing-bg" style={style}>
+			<Navbar />
 			<Details />
-			<Applications />
-			<Benefits />
-			<Contact />
 		</div>
 	)
 }

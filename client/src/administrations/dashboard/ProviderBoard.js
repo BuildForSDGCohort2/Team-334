@@ -1,17 +1,30 @@
 import React from 'react'
-import './assests/sidebar.css'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './assests/css/style.css'
 import Sidebar from './Sidebar'
-// import Panel from './Panel'
-import WaitRoom from './WaitRoom'
+import Panel from './Panel'
+import UpdateDetails from './UpdateDetails'
+import Builder from './Builder'
+import Notification from './Notification'
 
 const ProviderBoard = () => {
+// 	const [view, setView ] = useState('');
+// 
+// 	const handleViewChange = useCallback(e => {
+// 		setView(e);
+// 	}, []);
+	
 	return (
 		<>
+			<BrowserRouter>
 				<Sidebar />
-			<div className="provider-grid">
-				{/* <Panel /> */}
-				<WaitRoom />
-			</div>
+				<Switch>
+					<Route exact path="/staff" component={Panel} />
+					<Route path="/staff/builder:id" component={Builder} />
+					<Route path="/staff/noti" component={Notification} />
+					<Route path="/staff/profile" component={UpdateDetails} />
+				</Switch>
+			</BrowserRouter>
 		</>
 	)
 }

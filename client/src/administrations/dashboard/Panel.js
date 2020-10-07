@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
 import envelope from './assests/envelope.png'
 import msg from './assests/email.png'
 import trend from './assests/trend.png'
@@ -22,8 +23,10 @@ const Panel = () => {
 					</Col>
 					<Col>
 						<div className="box-2">
-							<img src={settings} alt="" />
-							<span>Demo text-2</span>
+							<Link to="/update">
+								<img src={settings} alt="" />
+								<span>Demo text-2</span>	
+							</Link>
 						</div>
 					</Col>
 				</Row>

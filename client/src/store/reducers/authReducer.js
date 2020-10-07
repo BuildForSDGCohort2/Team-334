@@ -24,18 +24,36 @@ const authReducer = (state = initState, action) => {
 				authError: null
 			}
 		case 'SIGNUP_ERROR':
-			console.log('Signed up failed');
+			console.log('Signed up failed', action.err.message);
 			return {
 				authError: action.err.message
 			}
 		case 'DEMO_SUCCESS':
+		console.log('Demo Success')
 			return {
 				authError: null
 			}
 		case 'DEMO_ERROR':
-			console.log('Signedin for demo')
+				console.log('Signedin for demo')
 			return {
 				authError: action.err.message
+			}
+		case 'GET_Q':
+			console.log('GET_Q success');
+			return {
+				data: action.data,
+				authError: action.err.message
+			}
+		case 'Q_ERROR':
+			console.log('Q_ERROR');
+			return {
+				authError: action.err.message
+			}
+		case 'Q_ADDED':
+			console.log('Q_	added');
+			return {
+				data: true,
+				authError: null
 			}
 		default:
 		 return state

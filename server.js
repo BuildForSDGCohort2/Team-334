@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// handling create room route
+// Keys
 const {accountSid, apiKey, authToken, secret, mongoURI} = require('./config/keys');
 
 // Initialize Token
@@ -39,11 +39,23 @@ app.post('/video/token', (req, res) => {
 			const jwt = token.toJwt();
 			res.json({ jwt, room: room.uniqueName });
 		}).catch(err => console.log(err))
-})
+});
 
-app.use('/api/user', require('./routes/api/users'));
+app.post('/joinroom', (req, res) => {
+	const { roomName, userName } = req.body;
+
+	const token = new AccessToken(accountSid, apiKey, secret);
+	token.identity = userName;
+	const videoGrant = new VideoGrant({ userName });
+	token.addGrant(videoGrant);
+
+	const jwt = token.toJwt();
+	res.json({ jwt });
+});
+
+app.use('/api/reg', require('./routes/api/reg'));
 app.use('/api/user/auth', require('./routes/api/auth'));
-app.use('/api/confirmation', require('./routes/api/validate'));
+app.use('/api/register', require('./routes/api/register'));
 
 // Port
 const PORT = process.env.PORT || 5000;

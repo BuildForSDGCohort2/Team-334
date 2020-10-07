@@ -1,7 +1,7 @@
 import React from 'react'
+import { signOut } from '../../store/actions/providerAction'
 import { Link } from 'react-router-dom'
-// import './assests/sidebar.css'
-// import { Container } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import home from './assests/home.png'
 import patient from './assests/medical.png'
 import videocamera from './assests/video-camera.png'
@@ -9,8 +9,7 @@ import logout from './assests/logout.png'
 import git from './assests/github.png'
 import menu from './assests/menu.png'
 
-
-const Sidebar = () => {
+const Sidebar = ({ signOut }) => {
 	return (
 		<>
 			<div className="side-bar mt-3">
@@ -26,25 +25,25 @@ const Sidebar = () => {
 					</span>
 
 					<div className="navigate-1 my-3 ml-2">
-						<Link to="/">
+						<Link to="/staff" >
 							<img src={home} alt="" />
 							<span>Home</span>
 						</Link>
 					</div>
 					<div className="navigate-2 my-3 ml-2">
-						<Link to="/">
+						<Link to="/staff/noti" >
 							<img src={patient} alt="" />
 							<span>Patients</span>
 						</Link>
 					</div>
 					<div className="navigate-3 my-3 ml-2">
-						<Link to="/">
+						<Link to="/video-chat">
 							<img src={videocamera} alt="" />
 							<span>Create</span>
 						</Link>
 					</div>
 					<div className="navigate-4 my-3 ml-2">
-						<Link to="/">
+						<Link to="#logout" onClick={() => signOut()}>
 							<img src={logout} alt="" />
 							<span>Logout</span>
 						</Link>
@@ -55,4 +54,16 @@ const Sidebar = () => {
 	)
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+	return {
+		data: state.provider.data
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		signOut: () => dispatch(signOut())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

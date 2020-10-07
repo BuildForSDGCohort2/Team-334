@@ -1,24 +1,18 @@
-import React from 'react'
-import { Jumbotron, Container } from 'react-bootstrap'
+import React from  'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 
-const Details = ({ auth }) => {
-
+const Details = () => {
 	return (
-		<Jumbotron fluid  style={{backgroundColor: "#005faf", fontSize: "18px"}} className="mb-0">
-			<Container className="text-center text-light">
-				<p>Telemedicine allows healthcare professionals to evaluate, diagnose and treat patients at a distance using telecommunications technology. This approach to healthcare has shown positive impacts and is becoming an increasing part of the world healthcare infrastructure. </p>
-			{auth.uid ? null : <Link to="/demo" style={{maxWith: "80vw"}} className="btn btn-outline-light mt-5">Request a demo</Link>}
-			</Container>
-		</Jumbotron>
+		<div className="container details">
+			<h2 className="details-heading ">Welcome to Virtual Care</h2>
+			<p className="details-text ">Telemedicine allows healthcare professionals to evaluate, diagnose and treat patients at a distance using telecommunications technology. </p>
+			<Link to="/staff" style={{backgroundColor: '#4951ec', color: '#92b5f9'}} className="demo btn">Learn more</Link>
+			<div className="benefits-wrapper my-5">
+				<p className="benefits-text ml-2">Save money and time, visit from the comfort of your home, stay safe from being exposed to potentially contagios patients</p>
+			<Link to="/" variant="light" className="mt-3 mx-2 btn btn-light" style={{width: '95%', color: '#92b5f9'}}>Request Demo</Link>
+			</div>
+		</div>
 	)
 }
 
-const mapStateToProps = state => {
-	return {
-		auth: state.firebase.auth
-	}
-}
-
-export default connect(mapStateToProps)(Details)
+export default Details;

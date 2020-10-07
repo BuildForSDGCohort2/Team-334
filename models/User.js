@@ -23,6 +23,7 @@ const UserSchema = new Schema({
 		required: true
 	}
 	,
+	patients: [],
 	register_date: {
 		type: Date,
 		default: Date.now

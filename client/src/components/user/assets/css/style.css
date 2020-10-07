@@ -1,0 +1,33 @@
+.doc-card {
+	width: 300px;
+	height: 40vh;
+	background: #f4f8fb;
+	position: relative;
+	/*display: block;*/
+	padding: 10px;
+	box-shadow: 0px 0px 1px rgba(0, 0, 0, .3);
+}
+
+.doc-card img.doc-img {
+	height: 50px;
+	width: 50px;
+	margin-left: 125px;
+}
+
+.doc-contact img {
+	width: 20px;
+	height: 20px;
+	margin: 0 3px;
+}
+
+.doc-about {
+	margin-left:;
+}
+
+.panel-wrapper, .questionnaire-wrapper {
+	margin-left: 20vw;
+}
+
+.lobby-wrapper {
+	position: fixed;
+}
