@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { signIn } from '../../store/actions/authActions.js'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import Navbar from '../dashboard/sections/Navbar'
 
 const SignIn = ({ signIn, auth }) => {
@@ -31,6 +31,7 @@ const SignIn = ({ signIn, auth }) => {
 					</Form.Group>
 					<Button type="submit">Login</Button>
 				</Form>
+				<Link to="/staff-signin" className="my-1 text-center" > Staff Login </Link>
 			</Container>
 		</>
 	)

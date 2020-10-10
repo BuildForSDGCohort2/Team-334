@@ -16,8 +16,6 @@ const SignIn = ({ signIn, data }) => {
 		signIn({email, password});
 	}
 
-	console.log(data);
-
 	// if (auth.uid) return <Redirect to="/" />
 	return (
 		<>

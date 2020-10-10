@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { sgKey, sender } = require('../../config/keys');
-
+require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(sgKey);
-// const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken');
 
-// const { jwtSecret } = require('../../config/keys.js');
+// Keys
+const sgKey = process.env.sgKey,
+      sender = process.env.sender;
+
+sgMail.setApiKey(sgKey);
 
 const Val = require('../../models/Validate');
 

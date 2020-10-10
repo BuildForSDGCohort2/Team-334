@@ -18,8 +18,7 @@ const VideoChat = ({ provider }) => {
     setUserName(e.target.value);
   }, []);
 
-  const handleSubmit = useCallback(
-    async e => {
+  const handleSubmit = useCallback(e => {
       e.preventDefault();
       axios.post('/joinroom', {
         roomName,

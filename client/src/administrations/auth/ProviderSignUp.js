@@ -19,7 +19,6 @@ const SignUp = ({ signUp, data }) => {
 
 	// const { auth } = this.props;
 	// if (auth.uid) return <Redirect to="/" />
-	console.log(data);
 
 	return (
 		<>

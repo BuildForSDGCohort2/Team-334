@@ -1,15 +1,16 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const auth = require('../../middleware/auth')
 
-const { jwtSecret } = require('../../config/keys.js');
+const jwtSecret = process.env.jwtSecret;
 
 const User = require('../../models/User.js');
 
 
-// Registering Providers
+// Signing In Providers
 router.post('/', (req, res) => {
 	const { email, password} = req.body;
 	console.log(email, password);
@@ -23,21 +24,22 @@ router.post('/', (req, res) => {
 			bcrypt.compare(password, user.password)
 				.then(isMatch => {
 					if(!isMatch) return res.status(400).json({ msg: 'Invalid credentials'});
-
 					jwt.sign(
 						{ id: user.id },
 						jwtSecret, 
 						(err, token) => {
 							if(err) throw err;
+							 
 							res.json({
 								token,
 								user: {
-									id: user.id,
-									firstname: user.firstname,
-									lastname: user.lastname,
-									email: user.email
-								}
-							})
+								firstname: user.firstname,
+								lastname: user.lastname,
+								email: user.email,
+								id: user.id,
+								patients: user.patients
+							}
+							});
 						}
 					)
 				})		
@@ -67,5 +69,15 @@ router.post('/update', (req, res) => {
 				.then(() => res.json({ msg: 'Details updated successfully'}));
 		})
 });
+
+// Get notifications
+router.post('/noti', (req, res) => {
+	const { id } = req.body;
+	User.findOne({ _id: id })
+		.then(user => {
+			console.log(user);
+			res.json({ user })
+		}).catch(err => console.log(err))
+})
 
 module.exports = router;

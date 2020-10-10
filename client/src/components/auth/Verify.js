@@ -9,7 +9,8 @@ const Verify = ({ handleVerify, handleVerifySubmit }) => {
 				<Form.Group>
 					<Form.Control type="number" id="v-code" placeholder="Enter code" onChange={handleVerify} />
 				</Form.Group>
-				<Button type="submit">Submit</Button>
+				<Button type="submit">Verify</Button>
+				<Button variant="outline-success">Back</Button>
 			</Form>
 		</Container>
 	)

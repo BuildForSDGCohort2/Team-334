@@ -1,16 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const twilio = require('twilio');
+require('dotenv').config();
 
-// init app
+// init app and Port
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // Parsing Data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Keys
-const {accountSid, apiKey, authToken, secret, mongoURI} = require('./config/keys');
+const accountSid = process.env.accountSid,
+      apiKey = process.env.apiKey,
+      authToken = process.env.authToken,
+      secret = process.env.secret,
+      mongoURI = process.env.mongoURI;
 
 // Initialize Token
 const AccessToken = twilio.jwt.AccessToken;
@@ -21,10 +27,14 @@ const client = twilio(accountSid, authToken);
 mongoose
 	.connect(mongoURI, {
 		useNewUrlParser: true,
+		useFindAndModify: false,
 		useCreateIndex: true,
 		useUnifiedTopology: true
 	})
-	.then(() => console.log('Mongodb Connected...'))
+	.then(() => {
+		console.log('Mongodb Connected...')
+		app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+	})
 	.catch(err => console.log(err));
 
 app.post('/video/token', (req, res) => {
@@ -57,8 +67,6 @@ app.use('/api/reg', require('./routes/api/reg'));
 app.use('/api/user/auth', require('./routes/api/auth'));
 app.use('/api/register', require('./routes/api/register'));
 
-// Port
-const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
@@ -67,5 +75,3 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build',  'index.html'))
     });
 }
-
-app.listen(PORT, () => console.log(`Server started at port ${PORT}`));

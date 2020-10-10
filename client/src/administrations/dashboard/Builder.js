@@ -7,7 +7,7 @@ const Builder = ({ addQ , match, data }) => {
 	const [q, setQ] = useState('');
 	const[type, setType] = useState('text');
 
-	const [fields, setFields] = useState([{label: 'you sick', type: 'text'},{label: 'your no', type: 'tel'}]);
+	const [fields, setFields] = useState([]);
 
 	const handleAdd = e => {
 		e.preventDefault();
@@ -18,20 +18,20 @@ const Builder = ({ addQ , match, data }) => {
 
 	const handleSend = e => {
 		e.preventDefault();
-		const myEmail = data.email;
-		const { email } = match.params;
-		addQ({email, myEmail, fields});
-		console.log(email, myEmail, fields);
+		const { email } = data.user;
+		const { uid } = match.params;
+		addQ({uid, email, fields});
+		console.log(email, uid, fields);
 	}
 
-	const outputs = fields && fields.map(field => {
+	const outputs = fields !== null ? fields.map(field => {
 		return (
 			<Card className="my-1" style={{ maxWidth: '600px'}} >
 				<p className="p-1">Question Asked: <b>{field.label}</b></p>
 				<span className="p-1">Expected answer type: <b>{field.type}</b></span>
 			</Card>
 		)
-	});
+	}) : (<p className="text-center">No entries yet...</p>);
 
 	return (
 		<Container className="builder-wrapper">

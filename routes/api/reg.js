@@ -1,9 +1,14 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail');
-const { sgKey, sender, jwtSecret } = require('../../config/keys');
+require('dotenv').config();
+
+// Keys
+const sgKey = process.env.sgKey,
+      sender = process.env.sender,
+      jwtSecret = process.env.jwtSecret;
 sgMail.setApiKey(sgKey);
 
 
@@ -44,8 +49,10 @@ router.post('/', (req, res) => {
 										token,
 										user: {
 											id: user.id,
-											name: user.firstname + ' ' + user.lastname,
-											email: user.email
+											firstname: user.firstname,
+											lastname: user.lastname,
+											email: user.email,
+											patients
 										}
 									})
 								}
@@ -59,29 +66,27 @@ router.post('/', (req, res) => {
 
 // Register Patient
 router.post('/patient', (req, res) => {
-	const { email, msg, _id } = req.body;
-	console.log(email, msg, _id)
+	const { email, msg, _id, uid } = req.body;
+	console.log(email, msg, _id, uid)
 
-	User.findOne({ _id })
-		.then(user => {
-			user.patients.addToSet({ email, msg });
+	User.findOneAndUpdate({ _id }, {
+		$addToSet: {patients: [{ email, msg, uid }]
+	}}).then(user => {
+		console.log(user);
+		const message = {
+					to: user.email,
+					from: sender,
+					subject: 'New Patient',
+					text: 'Patient',
+					html: `<h3>FROM: ${email}</h3>
+							<br><br>
+							<p>${msg}</p>`
+				}
 
-			const message = {
-				to: user.email,
-				from: sender,
-				subject: 'New Patient',
-				text: 'Patient',
-				html: `<h3>FROM: ${email}</h3>
-						<br><br>
-						<p>${user.msg}</p>`
-			}
-
-			sgMail.send(message)
-				.then(() => res.json({ emailSent: true}))
-				.catch(error => console.log(error.message))
-
-			res.json({ msg: "Booked Successfully"});
-		})
+		sgMail.send(message)
+			.then(() => res.json({ emailSent: true}))
+			.catch(error => console.log(error.message))
+	})
 });
 
 router.post('/send', (req, res) => {

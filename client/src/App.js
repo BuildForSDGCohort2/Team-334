@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/staff" component={ProviderBoard} />
           <Route path="/user" component={UserBoard} />
           <Route path="/book/:id" component={Book} />
-          <Route path="/builder/:email" component={Builder} />
+          <Route path="/builder/:uid" component={Builder} />
           <Route path="/update" component={UpdateDetails} />
         </Switch>
       </div>

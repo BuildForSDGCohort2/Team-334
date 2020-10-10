@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const signUp = ({ firstname, lastname, email, password }) => {
 	console.log(firstname, lastname, email, password)
@@ -9,6 +9,7 @@ export const signUp = ({ firstname, lastname, email, password }) => {
 			email,
 			password
 		}).then(({ data }) => {
+			console.log(data);
 			dispatch({ type: 'PROVIDER_SUCCESS', data})
 		}).catch(err => dispatch({ type: 'PROVIDER_ERROR', err}))
 	}
@@ -20,7 +21,9 @@ export const signIn = ({ email, password}) => {
 		axios.post('/api/user/auth', {
 			email,
 			password
-		}).then(({ data }) => dispatch({ type: 'PROVIDER_LOGGED', data}))
+		}).then(({ data }) => {
+			dispatch({ type: 'PROVIDER_LOGGED', data})
+		})
 		.catch(err => dispatch({ type: 'PROVIDER_FAILED', err}))
 	}
 }

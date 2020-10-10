@@ -62,24 +62,29 @@ export const demoCall = (creds) => {
 	}
 }
 
-export const getQ = (id) => {
-	console.log(id);
+// export const getQ = (uid) => {
+// 	console.log(uid);
+// 	return (dispatch, getState, {getFirestore}) => {
+// 		const firestore = getFirestore();
+// 
+// 		firestore.collection('users').get().then(doc => {
+// 			console.log(doc)
+// 			// dispatch({ type: 'GET_Q', data: res})
+// 		})
+// 		.catch(err => {
+// 			console.log(err.message);
+// 			dispatch({ type: 'Q_ERROR', err})
+// 		})
+// 	}
+// }
+
+export const addQ = ({ email, uid, fields }) => {
+	console.log(email, uid, fields)
 	return (dispatch, getState, {getFirestore}) => {
 		const firestore = getFirestore();
 
-		firestore.collection('users').doc(id).get()
-		.then(res => dispatch({ type: 'GET_Q', data: res}))
-		.catch(err => dispatch({ type: 'Q_ERROR', err}))
-	}
-}
-
-export const addQ = ({ email, myEmail, fields }) => {
-	console.log(email, myEmail, fields)
-	return (dispatch, getState, {getFirestore}) => {
-		const firestore = getFirestore();
-
-		firestore.collection('users').doc(email)
-			.update({ q: firestore.FieldValue.arrayUnion({fields, myEmail}) })
+		firestore.collection('users').doc(uid)
+			.update({ q: firestore.FieldValue.arrayUnion({fields, email}) })
 			.then(res => dispatch({ type: 'Q_ADDED'}))
 			.catch(err => console.log(err.message))
 

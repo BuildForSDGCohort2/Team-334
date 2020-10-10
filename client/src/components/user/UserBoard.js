@@ -4,6 +4,7 @@ import './assets/css/style.css'
 import Sidebar from './Sidebar'
 import Panel from './Panel'
 import Questionnaire from './Questionnaire'
+import Book from './Book'
 
 const UserBoard = () => {
 	
@@ -12,6 +13,7 @@ const UserBoard = () => {
 			<Sidebar />
 			<Switch>
 				<Route exact path="/user" component={Panel} />
+				<Route path="/book/:id" component={Book} />
 				<Route path="/user/questionnaire" component={Questionnaire} />
 			</Switch>
 		</BrowserRouter>

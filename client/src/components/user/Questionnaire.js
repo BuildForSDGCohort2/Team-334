@@ -1,63 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { getQ } from '../../store/actions/authActions'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import { useFirestoreConnect } from 'react-redux-firebase'
 
-const Questionnaire = ({ auth, data }) => {
-	const [questions, setQuestions] = useState([{label: 'Name', type: 'text'},{label: 'age', type: 'number'},{label: 'Do you feel dizzy', type: 'text'}]);
+const Questionnaire = () => {
+	useFirestoreConnect([
+		{ path: 'user/questionnaire'}
+	])
 
-	const [answers, setAnswer] = useState([]);
+	const user = useSelector(state => state.firebase)
 
-	useEffect(() => {
-		const { uid } = auth;
-		getQ(uid);
-		// setQuestions([...questions, data]);
-		console.log(uid, data)
-	}, [auth, data]);
+	console.log(user)
 
-	const handleSubmit = e => {
-		e.preventDefault();
-		console.log(answers);
 
-		axios.post('/api/reg/send', {
-			answers,
-			email: data[0].myEmail
-		})
-		.then(({ data }) => alert(data.msg))
-		.catch(err => console.log(err));
-	}
-
-	const inputs = questions.length ? (questions.map(q => {
-		return (
-			<div className="form-group" key={Math.random()}>
-				<label htmlFor={q.label}>{ q.label }</label>
-				<input type={q.type} onChange={e => setAnswer([...answers, e.target.value])} placeholder="Your answer..." className="form-control" />
-			</div>
-		)
-	})) : (<h5 className="text-center">Loading...</h5>);
+// 	const [questions, setQuestions] = useState([]);
+// 
+// 	const [answers, setAnswer] = useState([]);
 
 	return (
-		<div className="container questionnaire-wrapper">
-			<form style={{ maxWidth: '600px'}} >
-				<h3 className="my-2 text-center">Answer the following</h3>
-				{ inputs }
-				<button className="btn btn-primary btn-block" onSubmit={handleSubmit}>Submit</button>
-			</form>
-		</div>
+		<>
+			<Container>
+				
+			</Container>
+		</>
 	)
 }
 
-const mapStateToProps = state => {
-	return {
-		auth: state.firebase.auth,
-		data: state.auth.data
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		getQ: uid => dispatch(getQ(uid))
-	}
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Questionnaire);
+export default Questionnaire

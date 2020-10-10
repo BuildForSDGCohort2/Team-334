@@ -38,12 +38,12 @@ const authReducer = (state = initState, action) => {
 			return {
 				authError: action.err.message
 			}
-		case 'GET_Q':
-			console.log('GET_Q success');
-			return {
-				data: action.data,
-				authError: action.err.message
-			}
+		// case 'GET_Q':
+		// 	console.log('GET_Q success');
+		// 	return {
+		// 		data: action.data,
+		// 		authError: action.err.message
+		// 	}
 		case 'Q_ERROR':
 			console.log('Q_ERROR');
 			return {

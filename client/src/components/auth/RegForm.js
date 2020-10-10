@@ -7,7 +7,8 @@ const RegForm = ({
 	handleEmail,
 	handlePassword,
 	handleGuardian,
-	handleSubmit
+	handleSubmit,
+	handleV
 }) => {
 	const [age, setAge] = useState('');
 	return (
@@ -47,6 +48,7 @@ const RegForm = ({
 					<Form.Check type="checkbox" label="Sign me in to newsletter"/>
 				</Form.Group>
 				<Button type="submit">Submit</Button>
+				<Button variant="outline-success" onClick={handleV}>Verify Email</Button>
 			</Form>
 		</Container>
 	)

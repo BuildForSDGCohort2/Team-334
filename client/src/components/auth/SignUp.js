@@ -36,10 +36,12 @@ const SignUp = ({ signUp, auth }) => {
 	const handleVerify = useCallback(e => {
 		setVcode(e.target.value);
 	}, []);
+	const handleV = useCallback(e => {
+		setEmailSent(true)
+	}, []);
 
 
-	const handleVerifySubmit = useCallback( 
-		async e => {
+	const handleVerifySubmit = useCallback(e => {
 			e.preventDefault();
 			console.log(vcode);
 			axios.post('/api/register/verify', {
@@ -56,8 +58,7 @@ const SignUp = ({ signUp, auth }) => {
 			.catch(err => console.log(err));
 	}, [vcode, signUp]);
 
-	const handleSubmit = useCallback(
-		async e => {
+	const handleSubmit = useCallback(e => {
 			e.preventDefault();
 			console.log(firstname, lastname, email, password, guardian);
 			axios.post('/api/register', {
@@ -86,7 +87,8 @@ const SignUp = ({ signUp, auth }) => {
 				handleEmail={handleEmail}
 				handlePassword={handlePassword}
 				handleGuardian={handleGuardian}
-				handleSubmit={handleSubmit} 
+				handleSubmit={handleSubmit}
+				handleV={handleV}
 			/> : <Verify handleVerify={handleVerify} handleVerifySubmit={handleVerifySubmit} />}
 		</>
 	)

@@ -43,7 +43,7 @@ const Sidebar = ({ signOut }) => {
 						</Link>
 					</div>
 					<div className="navigate-4 my-3 ml-2">
-						<Link to="#logout" onClick={() => signOut()}>
+						<Link to="#logout" onClick={() => {/*signOut()*/}}>
 							<img src={logout} alt="" />
 							<span>Logout</span>
 						</Link>

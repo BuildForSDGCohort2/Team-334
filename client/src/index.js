@@ -14,9 +14,14 @@ const enhancers = [reduxFirestore(firebase), applyMiddleware(thunk.withExtraArgu
 
 const store = createStore(rootReducer, compose(...enhancers))
 
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true
+}
+
 const rrfProps = {
 	firebase,
-	config: {},
+	config: rrfConfig,
 	dispatch: store.dispatch,
 	creatFirestoreInstance
 }

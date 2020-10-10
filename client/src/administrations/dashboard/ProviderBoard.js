@@ -4,7 +4,6 @@ import './assests/css/style.css'
 import Sidebar from './Sidebar'
 import Panel from './Panel'
 import UpdateDetails from './UpdateDetails'
-import Builder from './Builder'
 import Notification from './Notification'
 
 const ProviderBoard = () => {
@@ -20,7 +19,6 @@ const ProviderBoard = () => {
 				<Sidebar />
 				<Switch>
 					<Route exact path="/staff" component={Panel} />
-					<Route path="/staff/builder:id" component={Builder} />
 					<Route path="/staff/noti" component={Notification} />
 					<Route path="/staff/profile" component={UpdateDetails} />
 				</Switch>
